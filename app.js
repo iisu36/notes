@@ -28,6 +28,9 @@ app.use(express.json())
 
 app.use('/api/notes', notesRouter)
 app.use('/api/testing', notesRouter)
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
 
 //app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
