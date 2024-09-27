@@ -47,4 +47,9 @@ notesRouter.delete('/:id', async (request, response) => {
   response.status(204).end()
 })
 
+notesRouter.post('/reset', async (request, response) => {
+  await Note.deleteMany({})
+  response.status(204).end()
+})
+
 export default notesRouter

@@ -37,6 +37,9 @@ jobs:
       - name: Test frontend
         run: npm run test:front
 
+      - name: Test e2e
+        run: npm run test:e2e
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
