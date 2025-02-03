@@ -66,3 +66,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+      - name: Test Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        env:
+          APP_URL: https://notes-black-smoke-9393.fly.dev
+        with:
+          severity: info
+          text: A new version of Notes deployed
+          description: to ${{env.APP_URL}} by ${{ github.event.pusher.name }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
