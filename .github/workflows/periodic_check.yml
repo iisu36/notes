@@ -21,7 +21,6 @@ jobs:
           retry-delay: 5s # Optional, only applicable to max-attempts > 1
           # Retry all errors, including 404. This option might trigger curl upgrade.
   discord_notification:
-    needs: [test_schedule]
     runs-on: ubuntu-20.04
     env:
       DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
