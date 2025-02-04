@@ -66,3 +66,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+  discord_notification:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    env:
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      APP_URL: https://notes-black-smoke-9393.fly.dev
+    steps:
+      - name: Success notification
+        uses: Ilshidur/action-discord@master
+        if: success()
+        with:
+          args: 'A new version of Notes deployed to ${{env.APP_URL}} by ${{ github.event.pusher.name }}'
+
+      - name: Failure notification
+        uses: Ilshidur/action-discord@master
+        if: failure()
+        with:
+          args: 'Run failed in commit [${{ github.sha }}](https://github.com/${{ github.repository}}/commit/${{ github.sha }}) by ${{ github.event.pusher.name }}'
