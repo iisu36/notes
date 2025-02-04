@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Success notification
         uses: Ilshidur/action-discord@master
-        if: success()
+        if: success() && github.event_name == 'push'
         with:
           args: 'A new version of Notes deployed to ${{env.APP_URL}} by ${{ github.actor }}'
 
