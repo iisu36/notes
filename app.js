@@ -29,7 +29,9 @@ app.use(express.json())
 app.use('/api/notes', notesRouter)
 app.use('/api/testing', notesRouter)
 app.get('/health', (req, res) => {
-  res.send('ok')
+  // eslint-disable-next-line no-constant-condition
+  if (true) throw 'error...  '
+  res.send('OK')
 })
 
 //app.use(middleware.unknownEndpoint)
