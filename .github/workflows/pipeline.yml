@@ -77,10 +77,10 @@ jobs:
         uses: Ilshidur/action-discord@master
         if: success()
         with:
-          args: 'A new version of Notes deployed to ${{env.APP_URL}} by ${{ github.event.sender.name }}'
+          args: 'A new version of Notes deployed to ${{env.APP_URL}}'
 
       - name: Failure notification
         uses: Ilshidur/action-discord@master
         if: failure()
         with:
-          args: 'Run failed in commit [${{ github.sha }}](https://github.com/${{ github.repository}}/commit/${{ github.sha }}) by ${{ github.event.sender.name }}'
+          args: 'Run failed in commit [${{ github.sha }}](https://github.com/${{ github.repository}}/commit/${{ github.sha }})'
