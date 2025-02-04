@@ -52,4 +52,10 @@ notesRouter.post('/reset', async (request, response) => {
   response.status(204).end()
 })
 
+notesRouter.get('/periodictest', (req, res) => {
+  // eslint-disable-next-line no-constant-condition
+  if (true) throw 'error...  '
+  res.send('OK')
+})
+
 export default notesRouter
