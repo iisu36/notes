@@ -32,8 +32,6 @@ app.get('/health', (req, res) => {
   res.send('OK')
 })
 app.get('/periodictest', (req, res) => {
-  // eslint-disable-next-line no-constant-condition
-  //if (true) throw 'error...  '
   res.send('OK')
 })
 
