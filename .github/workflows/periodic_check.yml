@@ -30,6 +30,6 @@ jobs:
           args: 'Periodic health check failed for ${{env.APP_URL}}'
       - name: Success notification
         uses: Ilshidur/action-discord@master
-        if: success()
+        if: success() && steps['Check the deployed service URL'].conclusion == 'success'
         with:
           args: 'Periodic health check passed for ${{env.APP_URL}}'
