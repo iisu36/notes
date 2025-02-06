@@ -23,14 +23,13 @@ jobs:
           # Delay between retries
           retry-delay: 5s # Optional, only applicable to max-attempts > 1
           # Retry all errors, including 404. This option might trigger curl upgrade.
+      - name: Failure notification
+        uses: Ilshidur/action-discord@master
+        if: failure() && steps['Check the deployed service URL'].conclusion == 'failure'
+        with:
+          args: 'Periodic health check failed for ${{env.APP_URL}}'
       - name: Success notification
         uses: Ilshidur/action-discord@master
         if: success()
         with:
           args: 'Periodic health check passed for ${{env.APP_URL}}'
-
-      - name: Failure notification
-        uses: Ilshidur/action-discord@master
-        if: failure()
-        with:
-          args: 'Periodic health check failed for ${{env.APP_URL}}'
